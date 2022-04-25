@@ -1,2 +1,10 @@
-var a = test()
-print(a)
+require("https")
+
+HTTPS.get("https://www.reddit.com/r/memes.json", {
+	sort: "new"
+}).then((response) => {
+	var data = response.body.data.children
+	print(data[Random.int(data.length)].data.url_overridden_by_dest)
+}).catch((err) => {
+	print("Error: " + err)
+})
