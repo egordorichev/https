@@ -1,10 +1,22 @@
 require("https")
 
+function save(url) {
+	HTTPS.get(url).then((response) => {
+		var file = new File("test.jpeg"), "w")
+
+		file.write(response.body)
+		file.close()
+	}).catch((err) => {
+		print("Error: " + err)
+	})
+}
+
+
 HTTPS.get("https://www.reddit.com/r/memes.json", {
-	sort: "new"
+	sort: "top"
 }).then((response) => {
 	var data = response.body.data.children
-	print(data[Random.int(data.length)].data.url_overridden_by_dest)
+	save(data[Random.int(data.length)].data.url_overridden_by_dest)
 }).catch((err) => {
 	print("Error: " + err)
 })
