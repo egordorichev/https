@@ -3,6 +3,6 @@
 
 #include "lit/lit.h"
 
-void https_open_library(LitState* state);
+void open_lit_library(LitState* state);
 
 #endif

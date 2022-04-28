@@ -553,10 +553,14 @@ LIT_METHOD(secureNetworkRequest_read) {
 	return OBJECT_VALUE(response);
 }
 
-void https_open_library(LitState* state) {
+extern const char lit_https[];
+
+void open_lit_library(LitState* state) {
 	LIT_BEGIN_CLASS("SecureNetworkRequest")
 		LIT_BIND_CONSTRUCTOR(secureNetworkRequest_contructor)
 		LIT_BIND_METHOD("write", secureNetworkRequest_write)
 		LIT_BIND_METHOD("read", secureNetworkRequest_read)
 	LIT_END_CLASS()
+
+	lit_interpret(state, "https", (char*) lit_https);
 }

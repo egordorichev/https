@@ -14,3 +14,4 @@ Testing
 *.so
 cmake_install.cmake
 test.jpeg
+lit_https.c
