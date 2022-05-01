@@ -480,7 +480,7 @@ LIT_METHOD(secureNetworkRequest_read) {
 	bool parsing_body = false;
 	bool parsed_status = false;
 
-	const char* start = data->message;
+	char* start = data->message;
 	size_t length;
 
 	while (true) {
@@ -531,7 +531,7 @@ LIT_METHOD(secureNetworkRequest_read) {
 		if (lit_table_get(headers_table, CONST_STRING(state, "Content-Length"), &content_length) || lit_table_get(headers_table, CONST_STRING(state, "content-length"), &content_length)) {
 			content_length = NUMBER_VALUE(atoi(AS_CSTRING(content_length)));
 		} else {
-			content_length = NUMBER_VALUE(length);
+			content_length = NUMBER_VALUE(strlen(start));
 		}
 
 		LitString *body_string = lit_copy_string(state, start, AS_NUMBER(content_length));
